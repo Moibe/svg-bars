@@ -1,5 +1,5 @@
 import { obtenerDatosAPI } from '/obtenerDatos.js';
-import { cicloConstructor } from '/tabulador.js';
+import { cicloConstructor } from '/generar-tablas.js';
 import { transformarString } from '/funciones.js';
 
 var cantidad_barras = 12
@@ -31,14 +31,12 @@ obtenerDatosAPI().then(datos => {
             const carouselItem = document.createElement('div');
             carouselItem.className = 'carousel-item';
             carouselItem.id = nombre_id_carrusel;
-            carouselItem.dataset.bsInterval = '3000'; // Setting the data-bs-interval attribute
+            carouselItem.dataset.bsInterval = '5000'; // Intervalo de tiempo para el slide del carrusel.
 
             var carrusel = document.getElementById("carrusel"); 
             console.log("ESto es carrusel: ", carrusel)
             carrusel.appendChild(carouselItem);
             console.log("Esto es carrusel después de la unión: ", carrusel)
-
-
 
             //Creación del área de dibujo.
             const svgNS = "http://www.w3.org/2000/svg";

@@ -1,3 +1,6 @@
+var letra
+var contorno
+
 //Prepara ancho porcentaje
 function preparaAnchoPorcentaje(cantidad){
   //Se convierte a float y se hace ésta fórmula para cuadrar con la proporción.
@@ -18,23 +21,44 @@ function preparaColorBarra(cantidad){
 
   var cantidad = parseFloat(cantidad)
 
-  var verde = '#49B675'
-  var naranja = "#FFA500"
-  var amarillo = 'yellow'
-  var rojo = '#FF4000'
+  
+  // var verde = '#49B675'
+  // var naranja = "#FFA500"
+  // var amarillo = 'yellow'
+  // var rojo = '#FF4000'
+  // var azul = '#00aae4' 
+  // var negro = '#000000' 
 
-  if (cantidad >= 0 && cantidad <= 25) {
-    return rojo; // Red for 0 to 25
-  } else if (cantidad >= 26 && cantidad <= 50) {
-    return amarillo; // Yellow for 26 to 50
-  } else if (cantidad >= 51 && cantidad <= 90) {
-    return naranja; // Orange for 51 to 90
-  } else if (cantidad >= 91 && cantidad <= 100) {
-    return verde; // Green for 91 to 100
+  
+  var verde = "#00bc8c"
+  var naranja = "#f39c12"
+  var amarillo = "#f2fb00"
+  var rojo = "#e4221f"
+  var azul = "#00aae4" 
+  var negro = "#000000"
+  var blanco = "#FFFFFF"
+  
+  
+  //Por default la letra será negra: 
+  letra = "black"
+  contorno = "black"
+
+  if (cantidad >= 0 && cantidad < 25) {
+    return rojo; 
+  } else if (cantidad >= 25 && cantidad < 50) {
+    return amarillo; 
+  } else if (cantidad >= 50 && cantidad < 90) {
+    return naranja; 
+  } else if (cantidad >= 90 && cantidad < 100) {
+    return verde;
+  } else if (cantidad == 100) {
+    letra = amarillo
+    contorno = amarillo
+    return negro; 
   } else {
     
     console.error(`Invalid cantidad value: ${cantidad}`);
-    return null; 
+    return azul; 
   }
 }
 
@@ -70,7 +94,7 @@ export function transformarString(cadena){
 
     var elemento = transformarString(dataset)
   
-  
+  console.log("Previoerror...")
   console.log("Procesofor Paquete.Dataset es: ", elemento_ronda[elemento])
   var elemento = elemento_ronda[elemento]
   var fraccion = elemento_ronda.Avance +  "/" +  elemento_ronda.Total
@@ -96,7 +120,7 @@ export function transformarString(cadena){
     var newRect = document.createElementNS(svgNS, "rect");
     // Set attributes for the current bar
     newRect.setAttribute('fill', color_barra); 
-    newRect.setAttribute('stroke', "#000000");
+    newRect.setAttribute('stroke', contorno);
     newRect.setAttribute('width', ancho_barra); 
     newRect.setAttribute('height', "25"); //grosor de la barra.
     newRect.setAttribute('x', "25"); 
@@ -104,13 +128,14 @@ export function transformarString(cadena){
     newRect.setAttribute('rx', "0"); // Esquinas curvas con 10
     newRect.setAttribute('ry', "10"); 
 
-    console.log("Primer appendchild...")
+
     area.appendChild(newRect);
 
       //Texto 
+
       var newText = document.createElementNS(svgNS, "text");
       
-      newText.setAttribute('fill', "black")
+      newText.setAttribute('fill', letra)
       // newText.setAttribute('stroke', "black")
       newText.setAttribute('x', "30")
       newText.setAttribute('y', 20 + (espaciado * barra) +18)
@@ -120,7 +145,7 @@ export function transformarString(cadena){
       
       newText.textContent = texto; 
 
-      console.log("Segundo appendchild...")
+      
       area.appendChild(newText)
 
   }
