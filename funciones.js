@@ -54,12 +54,13 @@ export function transformarString(cadena){
     return cadena;
   };
 
-  export async function construyeBarra(j, nombre_id_area, dataset, i, paquete){
+  export async function construyeBarra(j, nombre_id_area, dataset, i, paquete, barra){
     //La J es la barra.
     //La i es el número de tabla para cada dataset. 
     //El número de tabla sabra que segmento de datos sacar.
 
-    console.log("Dataset:" + dataset + ", tabla número: ", i)
+    console.log("procesofor, haciendo una nueva barra, del detaset: " + dataset + " y el registro:" + j)
+    
 
     //El elemento en específico que tomará para ésta ronda es: 
     var elemento_ronda = paquete[j]
@@ -69,13 +70,8 @@ export function transformarString(cadena){
 
     var elemento = transformarString(dataset)
   
-
-  var barra = j + 1
- 
-  console.log("Estoy haciendo la barra número: " + barra)
   
-  
-  console.log("Paquete.Dataset es: ", elemento_ronda[elemento])
+  console.log("Procesofor Paquete.Dataset es: ", elemento_ronda[elemento])
   var elemento = elemento_ronda[elemento]
   var fraccion = elemento_ronda.Avance +  "/" +  elemento_ronda.Total
   
@@ -104,7 +100,7 @@ export function transformarString(cadena){
     newRect.setAttribute('width', ancho_barra); 
     newRect.setAttribute('height', "25"); //grosor de la barra.
     newRect.setAttribute('x', "25"); 
-    newRect.setAttribute('y', 20 + espaciado * j); 
+    newRect.setAttribute('y', 20 + espaciado * barra); 
     newRect.setAttribute('rx', "0"); // Esquinas curvas con 10
     newRect.setAttribute('ry', "10"); 
 
@@ -117,7 +113,7 @@ export function transformarString(cadena){
       newText.setAttribute('fill', "black")
       // newText.setAttribute('stroke', "black")
       newText.setAttribute('x', "30")
-      newText.setAttribute('y', 20 + (espaciado * j) +18)
+      newText.setAttribute('y', 20 + (espaciado * barra) +18)
       newText.setAttribute('font-size', '19px')
       newText.setAttribute('font-weight', '400')
       // newText.setAttribute('textLength', "29")

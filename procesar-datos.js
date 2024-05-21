@@ -2,7 +2,7 @@ import { obtenerDatosAPI } from '/obtenerDatos.js';
 import { cicloConstructor } from '/tabulador.js';
 import { transformarString } from '/funciones.js';
 
-var cantidad_barras = 15
+var cantidad_barras = 12
 var datasets = ['RUTAS', 'CLIENTES']
 
 //Primero obtengo los datos y entonces hago las operaciones de calculo de cantidad de tablas.
@@ -18,7 +18,6 @@ obtenerDatosAPI().then(datos => {
         console.log("Esto es dataset: ", dataset)
         var elementoDataset =  transformarString(dataset);
         console.log(elementoDataset)
-        console.log("Esto es elemento: ", datos[dataset][0][elementoDataset])
         console.log("Esto es todo: ", datos[dataset][0])
 
         //Cada i es una tabla para ese dataset.
@@ -32,10 +31,12 @@ obtenerDatosAPI().then(datos => {
             const carouselItem = document.createElement('div');
             carouselItem.className = 'carousel-item';
             carouselItem.id = nombre_id_carrusel;
-            carouselItem.dataset.bsInterval = '10000'; // Setting the data-bs-interval attribute
+            carouselItem.dataset.bsInterval = '3000'; // Setting the data-bs-interval attribute
 
-            var Carrusel = document.getElementById("carrusel"); 
-            Carrusel.appendChild(carouselItem);
+            var carrusel = document.getElementById("carrusel"); 
+            console.log("ESto es carrusel: ", carrusel)
+            carrusel.appendChild(carouselItem);
+            console.log("Esto es carrusel después de la unión: ", carrusel)
 
 
 
@@ -55,13 +56,11 @@ obtenerDatosAPI().then(datos => {
             var itemCarrusel = document.getElementById(nombre_id_carrusel); 
             itemCarrusel.appendChild(svgElement);
 
-
-            //ventanaCarrusel.appendChild(svgElement);
-
-            var paquete = datos[dataset]
-           
+            var paquete = datos[dataset]           
             
+            console.log("Procesofor: Construído svg para recibir siguiente set.")
             //Construirá las barras que van en ese svg.
+            
             cicloConstructor(cantidad_tablas, cantidad_barras, nombre_id_area, dataset, i, paquete);
             ////
 
