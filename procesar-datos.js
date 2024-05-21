@@ -25,6 +25,21 @@ obtenerDatosAPI().then(datos => {
         for (let i = 1; i < cantidad_tablas + 1; i++){ 
         
             //Hacer esto tantas veces como tablas deba tener ese dataset (cantidad_tablas)
+
+            var nombre_id_carrusel = "carrusel" + dataset + i
+
+            //Creación del segmento de carrusel que contendrá el área del dibujo:
+            const carouselItem = document.createElement('div');
+            carouselItem.className = 'carousel-item';
+            carouselItem.id = nombre_id_carrusel;
+            carouselItem.dataset.bsInterval = '10000'; // Setting the data-bs-interval attribute
+
+            var Carrusel = document.getElementById("carrusel"); 
+            Carrusel.appendChild(carouselItem);
+
+
+
+            //Creación del área de dibujo.
             const svgNS = "http://www.w3.org/2000/svg";
             const svgElement = document.createElementNS(svgNS, "svg");
 
@@ -33,14 +48,18 @@ obtenerDatosAPI().then(datos => {
             // Atributos del elemento svg donde se trabajará.
             svgElement.setAttribute("width", "600");
             svgElement.setAttribute("height", "500");
-            svgElement.setAttribute("id", nombre_id_area); // Set an ID
-            svgElement.setAttribute("class", "svgGrafica"); // Set a class
+            svgElement.setAttribute("id", nombre_id_area); //Id
+            svgElement.setAttribute("class", "svgGrafica"); //Clase
             // Append the SVG element to the desired container (e.g., body)
-            document.body.appendChild(svgElement);
+            
+            var itemCarrusel = document.getElementById(nombre_id_carrusel); 
+            itemCarrusel.appendChild(svgElement);
+
+
+            //ventanaCarrusel.appendChild(svgElement);
 
             var paquete = datos[dataset]
-            console.log("182: Esto es el paquete que se va a enviar: ", paquete)
-
+           
             
             //Construirá las barras que van en ese svg.
             cicloConstructor(cantidad_tablas, cantidad_barras, nombre_id_area, dataset, i, paquete);
