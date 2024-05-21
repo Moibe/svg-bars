@@ -3,17 +3,9 @@ html {
     font-size: 26px;
   }
 
-#svgGrafica{
+.svgGrafica{
     border: 5px solid rgb(236, 18, 200);
     width: 600px;
     height: 500px;
 }
 
-#graph-container{
-    display: flex;
-    position: absolute;
-    border: 5px solid rgb(216, 31, 31);
-    top: 0%; 
-    left: 10%;
-    width: auto;
-}

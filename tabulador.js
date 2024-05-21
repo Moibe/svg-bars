@@ -1,44 +1,21 @@
 import { construyeBarra } from '/funciones.js';
 
-export function cicloConstructor(cantidad_tablas, datos) {
+export function cicloConstructor(cantidad_tablas, cantidad_barras, nombre_id_area, dataset, i, paquete) {
 
-  console.log("Recibidmos cantidad_tablas: ", cantidad_tablas)
-  console.log("REcibimos los datos: ", datos)
-
-
-
-  //Loop para cantidad de páginas.
-  for (let i = 0; i < 3; i++){
-    console.log("Estoy en la tabla: ", i+1)
-
-    //Loop para cantidad de hojas.
-    for (let j = 0; j < 15; j++) {
-      //Éste ciclo constryue las 15 barras...          
-      construyeBarra(i, j)
-    }
-      
-
-
-      let remainingSeconds = 15; // Initial countdown value (15 seconds)
-
-      const countdownInterval = setInterval(() => {
-        console.log(`Countdown: ${remainingSeconds--} seconds`);
+  console.log("Recibimos cantidad_tablas: ", cantidad_tablas)
+  
+  //Loop para cantidad de tablas para ese dataser.
+  // for (let i = 0; i < cantidad_tablas; i++){
     
-        if (remainingSeconds === 0) {
-          clearInterval(countdownInterval); // Stop the interval when countdown reaches 0
-          
-
-        }
-      }, 1000); // Update countdown every 1 second (1000 milliseconds)
-
-      console.log("Esto se debería imprimir tres veces por la tabla en cuestión es: ", i)
-      
-      
-  
-  
+    //Loop para cada barra.
+    for (let j = 0; j < cantidad_barras; j++) {
+      //Éste ciclo constryue las 15 barras...    
+      //Cada i es el número de tabla para ese dataset.      
+      construyeBarra(j, nombre_id_area, dataset, i, paquete)
+    }
     
   }
 
   
-}
+// }
 
